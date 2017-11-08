@@ -357,6 +357,7 @@ function v1_get() {
 
         var allowed;
         var email = get_email(req.user);
+        var aliases = get_aliases(req.user);
         var twitter;
         var email_domains = {};
         for (var i in resource.a) {
@@ -369,7 +370,7 @@ function v1_get() {
                 }
             }
             else if (acl.k === 'e') {
-                if (email === acl.v) {
+                if (email === acl.v || aliases.indexOf(acl.v) >= 0) {
                     allowed = true;
                 }
                 else {
@@ -453,6 +454,13 @@ function get_provider_config(twitter, email_domains, provider) {
 
     config.preferred = distinct(config.preferred);
     return config;
+}
+
+function get_aliases(user) {
+    if (user && Array.isArray(user._json.aliases))
+        return user._json.aliases;
+    else
+        return [];
 }
 
 function get_email(user) {
