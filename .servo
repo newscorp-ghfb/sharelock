@@ -1,0 +1,19 @@
+{
+  "platform": "nodejs",
+  "tags": {
+    "default": {
+      "owner": "pulsar.engineering@dowjones.com",
+      "bu": "djplr",
+      "product": "pulsar",
+      "appid": "sharelock",
+      "component": "web",
+      "environment": "dev"
+    },
+    "dev": {
+      "environment": "dev"
+    },
+    "production": {
+      "environment": "prod"
+    }
+  }
+}
